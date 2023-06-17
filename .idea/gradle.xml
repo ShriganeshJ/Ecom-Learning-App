@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Learning-App-CacheModule" />
+            <option value="$PROJECT_DIR$/Learning-App-DAO" />
             <option value="$PROJECT_DIR$/Learning-App-Services-Module" />
           </set>
         </option>
