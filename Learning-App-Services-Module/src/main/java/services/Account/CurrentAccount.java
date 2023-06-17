@@ -7,4 +7,8 @@ import org.springframework.stereotype.Component;
 @Qualifier("currentaccount")
 public class CurrentAccount implements Account {
 
+    @Override
+    public String getJsonAccountInfo() {
+        return null;
+    }
 }
