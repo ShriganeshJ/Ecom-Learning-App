@@ -3,7 +3,7 @@ package org.bank.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import services.Account.Account;
+import org.springframework.web.bind.annotation.ResponseBody;
 import services.Account.Factory.IAccountFactory;
 
 
@@ -11,7 +11,8 @@ import services.Account.Factory.IAccountFactory;
 public class WebController {
 @Autowired
 IAccountFactory iAccountFactory;
-@GetMapping
+@GetMapping("/account")
+@ResponseBody
 public String getAccountInformation()
 {
 return iAccountFactory.getAccountType("current").getJsonAccountInfo();
