@@ -1,13 +1,11 @@
 package services.Account;
+import org.springframework.stereotype.Service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
-@Component
-@Qualifier("individualaccount")
+@Service
 public class IndividualAccount implements Account {
+    public IndividualAccount(){}
     @Override
     public String getJsonAccountInfo() {
-        return null;
+        return "{IndividualAccount}";
     }
 }
