@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import java.util.Arrays;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"org.bank.controller","org.bank.config","services.Account"})
 public class Application {
 
     public static void main(String[] args) {
@@ -21,7 +22,6 @@ public class Application {
         return args -> {
 
             System.out.println("Let's inspect the beans provided by Spring Boot:");
-
             String[] beanNames = ctx.getBeanDefinitionNames();
             Arrays.sort(beanNames);
             for (String beanName : beanNames) {

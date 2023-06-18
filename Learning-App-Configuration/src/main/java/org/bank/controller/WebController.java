@@ -11,11 +11,11 @@ import services.Account.Factory.IAccountFactory;
 public class WebController {
 @Autowired
 IAccountFactory iAccountFactory;
-@GetMapping("/account")
+@GetMapping("/ecom/account")
 @ResponseBody
 public String getAccountInformation()
 {
-return iAccountFactory.getAccountType("current").getJsonAccountInfo();
+    return iAccountFactory.getAccountType("join").getJsonAccountInfo();
 }
 
 }
