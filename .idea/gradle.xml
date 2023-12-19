@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/Learning-App-Configuration" />
             <option value="$PROJECT_DIR$/Learning-App-DAO" />
             <option value="$PROJECT_DIR$/Learning-App-Services-Module" />
+            <option value="$PROJECT_DIR$/TestUtils" />
           </set>
         </option>
       </GradleProjectSettings>
