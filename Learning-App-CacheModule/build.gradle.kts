@@ -24,6 +24,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb:3.2.0")
     // https://mvnrepository.com/artifact/org.redisson/redisson
     implementation("org.redisson:redisson:3.25.0")
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation("com.google.code.gson:gson:2.10.1")
+
 
 
 

@@ -1,8 +1,10 @@
-package com.ecom.gemfre;
+package com.ecom.mongo;
 
-import com.ecom.pojo.AccountDataResponse;
-import com.ecom.query.AccountData;
+import com.ecom.pojo.TradeInfo;
+import com.ecom.pojo.UserInfo;
+import com.ecom.query.CurrencyData;
 import com.ecom.repo.AccountRepository;
+import com.google.gson.Gson;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -24,20 +26,14 @@ public class LoadData {
     @Autowired
     MongoClient mongoClient;
 
-    public AccountDataResponse getResponseById(String id)
-    {
-        System.out.println("accountRepository Object Class Name "+accountRepository.getClass().getName());
-        return accountRepository.findById(id).get();
-    }
-
-    public void getFromMongoClient()
+    public void getDataFromMongoDb()
     {
       MongoCollection<Document> mongoCollection= mongoClient.getDatabase("ECOM").getCollection("SDVS");
-       var it =mongoCollection.aggregate(BsonArray.parse(AccountData.GET_PULSE_USER_QUERY)
+       var it =mongoCollection.aggregate(BsonArray.parse(CurrencyData.GET_CURRENCY_$MATCH)
                .stream()
                .map(bsonValue -> bsonToDocument(bsonValue.asDocument()))
                .collect(Collectors.toList()));
-       //send data to cahce
+
         insertIntoCache(it.iterator());
 
 
@@ -46,14 +42,20 @@ public class LoadData {
     public  void insertIntoCache(MongoCursor<Document> mongoCursor)
     {
         var counter =0;
+        Gson gson = new Gson();
         while (mongoCursor.hasNext())
         {
             counter++;
             var document = mongoCursor.next();
+            var k1Number =document.get("k1_Number",String.class);
             var session =document.get("session",String.class);
-            var platform = document.get("platform", String.class);
-           // var userInfo=document.get("userInfo", UserInfo.class);
-            System.out.println("session::"+session+"Platform::"+platform);
+            var exchange =document.get("Exchange",String.class);
+            var userInfo = gson.fromJson(document.get("userInfo", Document.class).toJson(), UserInfo.class);
+            var tradeInfo =gson.fromJson(document.get("tradeInfo", Document.class).toJson(), TradeInfo.class);
+
+            System.out.println("K1Number::"+k1Number+"Session::"+session+"Exchange::"+exchange);
+            System.out.println("UserInfo::"+userInfo);
+            System.out.println("TradeInfo::"+tradeInfo);
         }
 
     }

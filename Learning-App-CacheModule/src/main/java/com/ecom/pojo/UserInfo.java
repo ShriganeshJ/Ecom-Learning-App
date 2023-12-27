@@ -3,7 +3,7 @@ package com.ecom.pojo;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 public class UserInfo {
-    @Field("userID")
+
     private String userId;
 
     @Override
@@ -11,20 +11,16 @@ public class UserInfo {
         return "UserInfo{" +
                 "userId='" + userId + '\'' +
                 ", email='" + email + '\'' +
-                ", isUdc=" + isUdc +
-                ", minTener='" + minTener + '\'' +
-                ", maxTener='" + maxTener + '\'' +
+                ", userAccountType='" + userAccountType + '\'' +
+                ", brokerName='" + brokerName + '\'' +
                 '}';
     }
 
-    @Field("email")
     private String email;
-    @Field("havingUDC")
-    private  boolean isUdc;
-    @Field("minTener")
-    private String minTener;
-    @Field("maxTener")
-    private String maxTener;
+
+    private String userAccountType;
+    private String brokerName;
+
 
     public String getUserId() {
         return userId;
@@ -42,30 +38,21 @@ public class UserInfo {
         this.email = email;
     }
 
-    public boolean isUdc() {
-        return isUdc;
+    public String getUserAccountType() {
+        return userAccountType;
     }
 
-    public void setUdc(boolean udc) {
-        isUdc = udc;
+    public void setUserAccountType(String userAccountType) {
+        this.userAccountType = userAccountType;
     }
 
-    public String getMinTener() {
-        return minTener;
+    public String getBrokerName() {
+        return brokerName;
     }
 
-    public void setMinTener(String minTener) {
-        this.minTener = minTener;
+    public void setBrokerName(String brokerName) {
+        this.brokerName = brokerName;
     }
-
-    public String getMaxTener() {
-        return maxTener;
-    }
-
-    public void setMaxTener(String maxTener) {
-        this.maxTener = maxTener;
-    }
-
 
 
 }
