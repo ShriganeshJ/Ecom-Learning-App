@@ -1,6 +1,7 @@
 package com.ecom;
 
 import com.ecom.mongo.LoadData;
+import com.ecom.mongo.TopGainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +18,8 @@ public class CacheMain implements CommandLineRunner {
 
 @Autowired
 LoadData loadData;
+@Autowired
+TopGainer topGainer;
     public static void main(String[] args) {
         SpringApplication.run(CacheMain.class,args);
 
@@ -28,6 +31,8 @@ LoadData loadData;
         System.out.println("Output........");
 
        loadData.getDataFromMongoDb();
+
+       topGainer.getDataFromMongoDb();
 
     }
 }

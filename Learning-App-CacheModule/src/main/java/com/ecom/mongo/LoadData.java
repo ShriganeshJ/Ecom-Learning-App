@@ -29,7 +29,7 @@ public class LoadData {
     public void getDataFromMongoDb()
     {
       MongoCollection<Document> mongoCollection= mongoClient.getDatabase("ECOM").getCollection("SDVS");
-       var it =mongoCollection.aggregate(BsonArray.parse(CurrencyData.GET_CURRENCY_$MATCH)
+       var it =mongoCollection.aggregate(BsonArray.parse(CurrencyData.CONDITION_AGG)
                .stream()
                .map(bsonValue -> bsonToDocument(bsonValue.asDocument()))
                .collect(Collectors.toList()));
@@ -45,7 +45,9 @@ public class LoadData {
         Gson gson = new Gson();
         while (mongoCursor.hasNext())
         {
-            counter++;
+
+    System.out.println(mongoCursor.next().toJson());
+          /*  counter++;
             var document = mongoCursor.next();
             var k1Number =document.get("k1_Number",String.class);
             var session =document.get("session",String.class);
@@ -54,8 +56,8 @@ public class LoadData {
             var tradeInfo =gson.fromJson(document.get("tradeInfo", Document.class).toJson(), TradeInfo.class);
 
             System.out.println("K1Number::"+k1Number+"Session::"+session+"Exchange::"+exchange);
-            System.out.println("UserInfo::"+userInfo);
-            System.out.println("TradeInfo::"+tradeInfo);
+           System.out.println("UserInfo::"+userInfo);
+           System.out.println("TradeInfo::"+tradeInfo);*/
         }
 
     }
