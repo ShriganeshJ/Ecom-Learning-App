@@ -1,4 +1,4 @@
-package com.gs.client;
+package org.example.gs;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;

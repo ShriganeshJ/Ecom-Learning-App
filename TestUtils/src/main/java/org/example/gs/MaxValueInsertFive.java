@@ -1,4 +1,4 @@
-package com.gs.client;
+package org.example.gs;
 
 public class MaxValueInsertFive {
     public static void main(String[] args) {

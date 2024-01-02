@@ -1,4 +1,4 @@
-package org.example;
+package org.example.gs;
 
 import com.len.util.LearingDAO;
 import com.len.util.LeariningUtil;
