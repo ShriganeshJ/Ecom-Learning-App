@@ -9,6 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/JMS" />
+            <option value="$PROJECT_DIR$/JavaTestUtils" />
+            <option value="$PROJECT_DIR$/JavaUtilTest" />
             <option value="$PROJECT_DIR$/Learning-App-CacheModule" />
             <option value="$PROJECT_DIR$/Learning-App-Configuration" />
             <option value="$PROJECT_DIR$/Learning-App-DAO" />

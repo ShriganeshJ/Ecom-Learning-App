@@ -1,6 +1,7 @@
 package com.ecom;
 
-import com.ecom.gemfre.LoadData;
+import com.ecom.mongo.LoadData;
+import com.ecom.mongo.TopGainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +18,8 @@ public class CacheMain implements CommandLineRunner {
 
 @Autowired
 LoadData loadData;
+@Autowired
+TopGainer topGainer;
     public static void main(String[] args) {
         SpringApplication.run(CacheMain.class,args);
 
@@ -27,7 +30,9 @@ LoadData loadData;
     public void run(String... args) throws Exception {
         System.out.println("Output........");
 
-        System.out.println(loadData.getResponseById("65707324464a4b2b3d7612d3"));
-        loadData.getFromMongoClient();
+       loadData.getDataFromMongoDb();
+
+       topGainer.getDataFromMongoDb();
+
     }
 }
