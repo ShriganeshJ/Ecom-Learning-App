@@ -5,10 +5,7 @@ import java.util.Arrays;
 public class AnagramChecker {
 
     public static boolean areAnagrams(String str1, String str2) {
-        // Check if the lengths of the strings are equal
-        if (str1.length() != str2.length()) {
-            return false;
-        }
+
 
         // Convert strings to streams of characters, sort, and collect to arrays
         Character[] charArray1 = str1.chars().sorted().mapToObj(c -> (char) c).toArray(Character[]::new);

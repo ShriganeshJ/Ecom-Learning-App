@@ -1,17 +1,13 @@
-package org.example;
+package org.example.basic;
 
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageProducer;
-import javax.jms.Queue;
-import javax.jms.Session;
-import javax.jms.TextMessage;
+import javax.jms.*;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-//One To One Queue
-public class FirstQueue {
+
+
+//Queue Browser :: A client uses a QueueBrowser object to look at messages on a queue without removing them.
+//Message is deleted from queue only when consumer consume message
+public class QueBrowser {
 
 	public static void main(String[] args) {
 
@@ -25,14 +21,24 @@ public class FirstQueue {
 			Session session = connection.createSession();
 			Queue queue = (Queue) initialContext.lookup("queue/myQueue");
 			MessageProducer producer = session.createProducer(queue);
-			TextMessage message = session.createTextMessage("I am the creator of my destiny");
-			producer.send(message);
-			System.out.println("Message Sent: " + message.getText());
+			TextMessage message = session.createTextMessage("Ecom/sdvs/currency");
+			TextMessage message2 = session.createTextMessage("Ecom/sdvs/branch");
+			producer.send(message);producer.send(message2);
+
+			QueueBrowser queueBrowser = session.createBrowser(queue);
+			var queueE=queueBrowser.getEnumeration();
+
+			 while (queueE.hasMoreElements()) {
+				 TextMessage textMessage = (TextMessage) queueE.nextElement();
+				 System.out.println("Message Sent Queue:" + textMessage.getText());
+			 }
 
 			MessageConsumer consumer = session.createConsumer(queue);
 			connection.start();
 			TextMessage messageReceived = (TextMessage) consumer.receive(5000);
 			System.out.println("Message Received: " + messageReceived.getText());
+			TextMessage messageReceived2 = (TextMessage) consumer.receive(5000);
+			System.out.println("Message Received: " + messageReceived2.getText());
 
 		} catch (NamingException e) {
 			e.printStackTrace();

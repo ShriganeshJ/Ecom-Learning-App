@@ -1,9 +1,10 @@
-package org.example;
+package org.example.basic;
 
 import javax.jms.*;
 import javax.naming.InitialContext;
+
 //One To Many-Topic
-public class FirstTopic {
+public class JMSAcknowladgement {
     public static void main(String[] args) throws Exception {
         InitialContext initialContext = null;
 
@@ -13,7 +14,7 @@ public class FirstTopic {
         ConnectionFactory cf = (ConnectionFactory) initialContext.lookup("ConnectionFactory");
         Connection connection=  cf.createConnection();
         //Create Session
-        Session session = connection.createSession();
+        Session session = connection.createSession(false, Session.CLIENT_ACKNOWLEDGE);
         //Create Topic
         Topic topic = (Topic) initialContext.lookup("topic/myTopic");
         //create producer using topic
@@ -47,6 +48,9 @@ public class FirstTopic {
 
         TextMessage messageReceived3 = (TextMessage) consumer3.receive(5000);
         System.out.println("Message Received consumer 3: " + messageReceived3.getText());
+
+        // Acknowledge the message after processing
+        message.acknowledge();
 
         connection.close();
         initialContext.close();

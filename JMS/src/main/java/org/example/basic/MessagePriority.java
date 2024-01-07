@@ -1,4 +1,4 @@
-package org.example;
+package org.example.basic;
 
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 
