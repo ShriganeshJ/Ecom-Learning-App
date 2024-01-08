@@ -25,6 +25,19 @@ public class GoldRateAPI {
 
             System.out.println("Messge Send");
 
+            //for shared consumer
+            Thread.sleep(10000);
+            JMSContext jmsContext2 = cf.createContext();
+            GoldRate goldRate2 = new GoldRate();
+            goldRate2.setLocalGold24Krates(58000.00);
+
+            for(int i=0;i<10;i++)
+            {
+                jmsContext2.createProducer().send(topic,goldRate2);
+
+            }
+            System.out.println("Messge Send for shared consumers");
+
 
         }
         catch (Exception e)

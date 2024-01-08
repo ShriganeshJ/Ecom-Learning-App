@@ -25,6 +25,23 @@ public class Muthooth {
             System.out.println("24k localGold "+goldRate.getLocalGold24Krates());
             System.out.println("22k localGold "+goldRate.getLocalGold22KRates());
 
+
+            //for shared consumer
+            System.out.println("for shred consumer");
+            JMSConsumer consumer1 = jmsContext.createSharedConsumer(topic, "sharedConsumer");
+            JMSConsumer consumer2 = jmsContext.createSharedConsumer(topic, "sharedConsumer");
+            for (int i = 1; i <= 10; i += 2) {
+                Message message1 = consumer1.receive();
+                GoldRate goldRate1 = (GoldRate) message1.getBody(GoldRate.class);
+                System.out.println("Consumer 1: " + goldRate1.getLocalGold24Krates());
+
+                Message message2 = consumer2.receive();
+                GoldRate goldRate2 = (GoldRate) message2.getBody(GoldRate.class);
+                System.out.println("Consumer 2: " + goldRate2.getLocalGold24Krates());
+
+            }
+            }
+
         }
     }
-}
+
