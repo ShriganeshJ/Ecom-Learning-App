@@ -6,7 +6,6 @@ import javax.jms.*;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import java.io.Serializable;
 
 public class EntitlementDataListener implements MessageListener {
 
@@ -19,19 +18,21 @@ public class EntitlementDataListener implements MessageListener {
 			String msg=  message.getBody(String.class);
             InitialContext initialContext = new InitialContext();
             Queue replyQueue = (Queue) initialContext.lookup("queue/replyQueue");
-          String k1Number=msg;
+			String k1Number=msg;
             System.out.println("K1 Number in listener: "+msg);
-			ObjectMessage replayMessage =jmsContext.createObjectMessage();
+			MapMessage mapMessage =jmsContext.createMapMessage();
 			if(k1Number.equalsIgnoreCase("k11254"))
 			{
-				replayMessage.setObject((Serializable) StaticDataContractService.newBuilder().build());
+				mapMessage.setObject("Key","Object Found k11254");
+
 			}
 			else
 			{
-				replayMessage.setObject("K1 Not Found");
+				mapMessage.setObject("Key","Object Not Found ");
 			}
 			JMSProducer producer = jmsContext.createProducer();
-			producer.send(replyQueue, replayMessage);
+			System.out.println("Set message and Sedn to replyQueue"+mapMessage.getObject("Key"));
+			producer.send(replyQueue, mapMessage);
 
         } catch (NamingException e) {
             throw new RuntimeException(e);

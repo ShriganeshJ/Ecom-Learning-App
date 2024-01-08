@@ -26,9 +26,11 @@ public class TradeAPP {
             JMSProducer producer = jmsContext.createProducer();
             System.out.println("Send k1 Number");
             String k1Number="k11254";
-            for (int i = 1; i <= 10; i++) {
-                producer.send(requestQueue, k1Number);
-            }
+            producer.send(requestQueue,k1Number);
+
+            JMSConsumer consumer = jmsContext.createConsumer(replyQueue);
+            MapMessage replyMessage = (MapMessage) consumer.receive(30000);
+            System.out.println("Patient eligibility is:" + replyMessage.getObject("Key"));
         }
     }
 }
