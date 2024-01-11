@@ -1,4 +1,4 @@
-package org.core.java;
+package org.core.java.thread;
 
 /**
  * In that class we create thread using anyInner class

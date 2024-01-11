@@ -1,4 +1,4 @@
-package org.core.java;
+package org.core.java.functional;
 
 public class PreDefineJavaFunctionalInterface {
 }

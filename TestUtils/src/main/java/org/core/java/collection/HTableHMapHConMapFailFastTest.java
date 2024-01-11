@@ -1,4 +1,4 @@
-package org.core.java;
+package org.core.java.collection;
 
 import java.util.Enumeration;
 import java.util.HashMap;
