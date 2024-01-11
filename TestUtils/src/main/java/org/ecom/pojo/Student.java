@@ -6,6 +6,18 @@ public class Student implements  Comparable<Student>
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", department='" + department + '\'' +
+                ", age=" + age +
+                ", percentage=" + percentage +
+                '}';
+    }
+
     public void setId(String id) {
         this.id = id;
     }
