@@ -1,4 +1,4 @@
-package org.core.java;
+package org.core.java.builder;
 
 
 import org.ecom.pojo.SuperLevelEntitlement;
