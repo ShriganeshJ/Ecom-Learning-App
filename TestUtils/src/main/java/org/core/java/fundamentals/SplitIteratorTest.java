@@ -1,4 +1,4 @@
-package org.core.java;
+package org.core.java.fundamentals;
 
 import org.ecom.pojo.Student;
 import org.util.classes.ListUtil;
@@ -6,16 +6,7 @@ import org.util.classes.ListUtil;
 import java.util.List;
 import java.util.Spliterator;
 
-/**
- * Method cover in this example
- *
- * stream()
- * parallerStream()
- * Spliterator()
- * retainAll(Collection<?> c)
- * removeIf(Predicate<? super E> filter)
- */
-public class CollectionExample {
+public class SplitIteratorTest {
 
     public static void main(String[] args) {
     splitIteratorExample();

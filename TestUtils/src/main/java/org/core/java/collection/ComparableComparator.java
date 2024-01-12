@@ -1,4 +1,4 @@
-package org.core.java;
+package org.core.java.collection;
 
 import org.ecom.pojo.Student;
 import org.util.classes.ListUtil;
