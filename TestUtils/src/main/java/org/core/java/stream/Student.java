@@ -7,7 +7,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "name='" + name + '\'' +
+                "name='" + firstName + '\'' +
                 ", rollNo=" + rollNo +
                 ", fee=" + fee +
                 ", department='" + department + '\'' +
@@ -15,14 +15,23 @@ public class Student {
                 '}';
     }
 
-    private String name;
+    private String firstName;
+
+
+
+    private String lastName;
     private int rollNo;
     private double fee;
     private  String department;
     private double grade;
 
-    public Student(String name, int rollNo, double fee, String department, double grade) {
-        this.name = name;
+
+
+    private int age;
+
+    public Student(String name, String lastName,int rollNo, double fee, String department, double grade) {
+        this.firstName = name;
+        this.lastName=lastName;
         this.rollNo = rollNo;
         this.fee = fee;
         this.department = department;
@@ -60,21 +69,34 @@ public class Student {
 
 
 
-    public Student(String name, int rollNo, double fee, String department) {
-        this.name = name;
+    public Student(String name, int rollNo, double fee, String department ,int age) {
+        this.firstName = name;
         this.rollNo = rollNo;
         this.fee = fee;
         this.department = department;
+        this.age = age;
+    }
+    public int getAge() {
+        return age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public String getLastName() {
+        return lastName;
+    }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getName() {
-        return name;
+        return firstName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.firstName = name;
     }
 
     public int getRollNo() {

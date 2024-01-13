@@ -17,17 +17,17 @@ public class PreDefineJavaFunctionalInterface {
     private static  List<Student> studentList;
     static {
         studentList  = List.of(
-                new Student("raja",10,10000,"MBA",4.69),
-                new Student("raja",10,10000,"DBA"),
-                new Student("mohan",17,20000,"MBA",8.69),
-                new Student("niti",19,170000,"DBA"),
-                new Student("BOB",16,16000,"MBA",9.32),
-                new Student("rohan",16,11000,"D"),
-                new Student("Jack",15,12000,"D"),
-                new Student("azim",16,13000,"MBA",8.36),
-                new Student("prakash",11,10000,"DBA"),
-                new Student("HOB",24,10000,"BBA"),
-                new Student("TOM",20,10000,"MBA",7.63)
+                new Student("raja","",10,10000,"MBA",4.69),
+                new Student("raja","",10,10000,"DBA",10),
+                new Student("mohan","",17,20000,"MBA",8.69),
+                new Student("niti","",19,170000,"DBA",14),
+                new Student("BOB","",16,16000,"MBA",9.32),
+                new Student("rohan","",16,11000,"D",15),
+                new Student("Jack","",15,12000,"D",17),
+                new Student("azim","",16,13000,"MBA",8.36),
+                new Student("prakash","",11,10000,"DBA",18),
+                new Student("HOB","",24,10000,"BBA",14),
+                new Student("TOM","",20,10000,"MBA",7.63)
         );
     }
     public static void main(String[] args) {
