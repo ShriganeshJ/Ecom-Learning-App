@@ -6,10 +6,7 @@ import org.ecom.pojo.TradeType;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.BiPredicate;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.*;
 import java.util.stream.Collectors;
 
 public class PreDefineJavaFunctionalInterface {
@@ -70,6 +67,15 @@ public class PreDefineJavaFunctionalInterface {
         Integer foodBill=1500;
         BiFunction<Integer,Integer,Integer> foodBillSum =(l,f)->l+f;
         System.out.println("Food Bill Sum "+ foodBillSum.apply(liquorBill,foodBill));
+        /**
+         *
+         * Supplier
+         * generate random number
+         */
+
+        Supplier<Double> randomSupplier = () -> Math.random();
+        System.out.println("Random Number"+randomSupplier.get());
+
 
 
 
