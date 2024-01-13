@@ -1,7 +1,14 @@
 package org.core.java.functional;
 import org.core.java.stream.Student;
+import org.ecom.pojo.CurrencyTrade;
+import org.ecom.pojo.TradeType;
+
+import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -44,6 +51,25 @@ public class PreDefineJavaFunctionalInterface {
 
       List<Student> placementList=studentList.stream().filter(s->isEligible.test(s.getDepartment(),s.getGrade())).collect(Collectors.toList());
         System.out.println("eligible students are "+placementList);
+
+
+        /***
+         * Example for pre define Functional interface
+         * calculate the profit function
+         */
+
+        Function<CurrencyTrade,Double> calculateProfit = (c)->(c.getExitPrice()-c.getEntryPrice())*c.getLotSize();
+
+        System.out.println("Total Profit is "+calculateProfit.apply(new CurrencyTrade("email",74,10.21,12.30,500, TradeType.FX,"EUR/USD")));
+
+        /***
+         * Example for pre define BiFunctional interface
+         * calculate liquor and Food bill total
+         */
+        Integer liquorBill =1400;
+        Integer foodBill=1500;
+        BiFunction<Integer,Integer,Integer> foodBillSum =(l,f)->l+f;
+        System.out.println("Food Bill Sum "+ foodBillSum.apply(liquorBill,foodBill));
 
 
 
