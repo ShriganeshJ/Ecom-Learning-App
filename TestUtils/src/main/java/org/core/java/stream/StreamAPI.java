@@ -155,6 +155,17 @@ public class StreamAPI {
         System.out.println("Min reduce "+reduceMin +"Max reduce "+reduceMax+" Reduce sum "+reduceSum);
 
 
+        //get sum of fee from student list
+
+        Double totalFeeSum = studentList.stream().map(i->i.getFee()).reduce(Double::sum).get();
+        System.out.println("Total fee "+totalFeeSum);
+
+        //using summery static
+        DoubleSummaryStatistics summaryStudentFee=studentList.stream().mapToDouble(Student::getFee).summaryStatistics();
+        System.out.println("Fee summary"+summaryStudentFee);
+
+
+
     }
 
 
