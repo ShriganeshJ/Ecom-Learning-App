@@ -15,17 +15,17 @@ public class StreamAPI {
    private static   List<Person> peoples;
     static {
       studentList  = List.of(
-          new Student("raja","ram",10,10000,"D",18),
-                new Student("raja","rao",10,10000,"D",21),
-                new Student("mohan","pal",17,20000,"D",14),
-                new Student("niti","yaday",19,170000,"D",25),
-                new Student("BOB","morgan",16,16000,"D",16),
-                new Student("rohan","mocizo",16,11000,"D",13),
-                new Student("Jack","samsu",15,12000,"D",28),
-                new Student("azim","shek",16,13000,"D",30),
-                new Student("prakash","",11,10000,"D",17),
-                new Student("HOB","peter",24,10000,"D",16),
-                new Student("TOM","cruz",20,10000,"D",19)
+          new Student("raja","ram",10,10000,"D",8.63),
+                new Student("raja","rao",10,10000,"D",7.63),
+                new Student("mohan","pal",17,20000,"D",8.32),
+                new Student("niti","yaday",19,170000,"D",6.32),
+                new Student("BOB","morgan",16,16000,"D",9.35),
+                new Student("rohan","mocizo",16,11000,"D",9.68),
+                new Student("Jack","samsu",15,12000,"D",8.28),
+                new Student("azim","shek",16,13000,"D",9.30),
+                new Student("prakash","",11,10000,"D",7.63),
+                new Student("HOB","peter",24,10000,"D",5.16),
+                new Student("TOM","cruz",20,10000,"D",6.19)
         );
 
        peoples = Arrays.asList(
@@ -122,6 +122,37 @@ public class StreamAPI {
 
         List<String> mobileNoList = peoples.stream().flatMap(i->i.getPhoneNumbers().stream()).collect(Collectors.toList());
         System.out.println("No are "+ mobileNoList);
+
+        /**
+         * @sorted()
+         * sort by grade
+         */
+        System.out.println("List of stud sorted by grade"+studentList.stream().sorted(Comparator.comparing(Student::getGrade).reversed()).collect(Collectors.toList()));
+
+        /**
+         * min max element from array
+         * @min()
+         * @max()
+         */
+        System.out.println("Min "+intList.stream().mapToInt(i->i.intValue()).min().getAsInt());
+        System.out.println("Max "+intList.stream().mapToInt(i->i.intValue()).max().getAsInt());
+
+        /**
+         * reduce method
+         * min(),max(),sum(),avg() internally use this method
+         * @reduce()
+         */
+
+        String longestString  =stringList.stream().reduce((w1,w2)->w1.length()>w2.length()?w1:w2).get();
+        Integer reduceSum01 = intList.stream().reduce((a,b)->a+b).get();
+        System.out.println("Reduce sume "+reduceSum01);
+
+        System.out.println("Long String is "+longestString);
+
+        Integer reduceMin= intList.stream().reduce(Integer::min).get();
+        Integer reduceMax= intList.stream().reduce(Integer::max).get();
+        Integer reduceSum = intList.stream().reduce(Integer::sum).get();
+        System.out.println("Min reduce "+reduceMin +"Max reduce "+reduceMax+" Reduce sum "+reduceSum);
 
 
     }
