@@ -37,7 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean deleteEmployee() {
-        return false;
+    public boolean deleteEmployee(Long empId) {
+        return employeeDAO.deleteEmployee(empId);
     }
 }

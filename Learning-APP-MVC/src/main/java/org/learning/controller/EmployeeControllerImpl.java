@@ -31,8 +31,8 @@ public class EmployeeControllerImpl implements EmployeeController {
         return employeeService.updateEmployeeEmail(value, key);
     }
 
-    @DeleteMapping("/ecom/deleteEmployees")
-    public boolean deleteEmployee() {
-        return false;
+    @DeleteMapping("/ecom/deleteEmployees/{empId}")
+    public boolean deleteEmployee( @PathVariable("empId") Long empId) {
+        return employeeService.deleteEmployee(empId);
     }
 }

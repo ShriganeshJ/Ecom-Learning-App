@@ -12,6 +12,6 @@ public interface EmployeeController
     public List<Employee> getEmployee();
     public  boolean addEmployee(Employee employee);
     public  boolean updateEmployee(JsonNode requestBody);
-    public boolean deleteEmployee();
+    public boolean deleteEmployee(Long empId);
 
 }

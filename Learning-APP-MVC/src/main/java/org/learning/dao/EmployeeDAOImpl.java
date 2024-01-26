@@ -30,7 +30,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             e.setDepartment(resultSet.getString("DEPARTMENT"));
             e.setSalary(Double.parseDouble(resultSet.getString("SALARY")));
             //use ternary operator to handel null
-            e.setDob((resultSet.getString("DOB")!=null)?resultSet.getDate("DOB").toLocalDate():null);
+            e.setDob((resultSet.getString("DOB") != null) ? resultSet.getDate("DOB").toLocalDate() : null);
             return e;
 
         });
@@ -39,7 +39,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public boolean addEmployee(Employee employee) {
 
-        int result = jdbcTemplate.update(Query.INSERT_EMPLOYEE, employee.getEmpId(), employee.getFirstName(), employee.getLastName(), employee.getCity(), employee.getMobileNo(), employee.getEmpId(), employee.getDepartment(), employee.getSalary(),employee.getDob());
+        int result = jdbcTemplate.update(Query.INSERT_EMPLOYEE, employee.getEmpId(), employee.getFirstName(), employee.getLastName(), employee.getCity(), employee.getMobileNo(), employee.getEmpId(), employee.getDepartment(), employee.getSalary(), employee.getDob());
         // Short form using ternary operator
         return (result > 0) ? true : false;
     }
@@ -48,7 +48,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public boolean updateEmployeeEmail(String key, String value) {
         int result = 0;
         result = jdbcTemplate.update(Query.UPDATE_EMPLOYEE_EMAIL, key, value);
+        return (result > 0) ? true : false;
+    }
 
+    @Override
+    public boolean deleteEmployee(Long empId) {
+        int result = 0;
+        result = jdbcTemplate.update(Query.DELETE_EMPLOYEE, empId);
         return (result > 0) ? true : false;
     }
 }
