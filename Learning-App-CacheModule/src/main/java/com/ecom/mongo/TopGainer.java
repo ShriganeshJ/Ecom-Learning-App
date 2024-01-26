@@ -1,6 +1,5 @@
 package com.ecom.mongo;
 
-import com.ecom.query.CurrencyData;
 import com.ecom.query.TopGainerLooser;
 import com.ecom.repo.AccountRepository;
 import com.google.gson.Gson;
@@ -15,9 +14,10 @@ import org.bson.codecs.DecoderContext;
 import org.bson.codecs.DocumentCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.stream.Collectors;
-@Component
+@Repository
 public class TopGainer {
     @Autowired
     AccountRepository accountRepository;
@@ -25,34 +25,16 @@ public class TopGainer {
     MongoClient mongoClient;
 
 
-    public void getDataFromMongoDb()
+    public  MongoCursor<Document> getDataFromMongoDb()
     {
         MongoCollection<Document> mongoCollection= mongoClient.getDatabase("ECOM").getCollection("Currnecny");
         var it =mongoCollection.aggregate(BsonArray.parse(TopGainerLooser.TOP_GAINER)
                 .stream()
                 .map(bsonValue -> bsonToDocument(bsonValue.asDocument()))
                 .collect(Collectors.toList()));
-
-        insertIntoCache(it.iterator());
-
-
-
-
-
+                 return it.iterator();
     }
 
-    public  void insertIntoCache(MongoCursor<Document> mongoCursor)
-    {
-        var counter =0;
-        Gson gson = new Gson();
-        while (mongoCursor.hasNext())
-        {
-
-            System.out.println(mongoCursor.next().toJson());
-
-        }
-
-    }
 
     public Document bsonToDocument(BsonDocument bsonDocument)
     {
