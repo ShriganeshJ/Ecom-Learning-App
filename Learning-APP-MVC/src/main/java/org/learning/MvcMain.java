@@ -1,3 +1,5 @@
+package org.learning;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -5,12 +7,10 @@ import org.springframework.stereotype.Controller;
 
 @SpringBootApplication
 @Controller
-@ComponentScan({"org.learning.controller","org.learning.service"})
+@ComponentScan({"org.learning.controller","org.learning.service","org.learning.dao"})
 public class MvcMain {
 
     public static void main(String[] args) {
         SpringApplication.run(MvcMain.class,args);
     }
-
-
 }
