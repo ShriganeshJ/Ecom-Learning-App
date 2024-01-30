@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 public interface EmployeeController
 {
-    public List<Employee> getEmployee();
+    public List<Employee> getEmployees();
     public  boolean addEmployee(Employee employee);
     public  boolean updateEmployee(JsonNode requestBody);
     public boolean deleteEmployee(Long empId);

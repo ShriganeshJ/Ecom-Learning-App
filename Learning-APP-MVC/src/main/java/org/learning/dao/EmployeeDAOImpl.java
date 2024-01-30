@@ -15,7 +15,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Employee> getEmployee() {
+    public List<Employee> getEmployees() {
         /**
          * USER ROW MAPPER TO EXTRACT DATA FROM DB
          */
@@ -56,5 +56,27 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         int result = 0;
         result = jdbcTemplate.update(Query.DELETE_EMPLOYEE, empId);
         return (result > 0) ? true : false;
+    }
+
+    @Override
+    public Employee getEmployee(long id) {
+
+        /**
+         * User queryForObject for single employee record
+         */
+        return jdbcTemplate.queryForObject(Query.EMPLOYEE_SELECT_BY_ID,new Object[]{id}, (resultSet, rowNumber) -> {
+            Employee e = new Employee();
+            e.setEmpId(Long.parseLong(resultSet.getString("EMP_ID")));
+            e.setFirstName(resultSet.getString("FIRST_NAME"));
+            e.setLastName(resultSet.getString("LAST_NAME"));
+            e.setCity(resultSet.getString("CITI"));
+            e.setMobileNo(Long.parseLong(resultSet.getString("MOBILE")));
+            e.setEmailId(resultSet.getString("EMAIL"));
+            e.setDepartment(resultSet.getString("DEPARTMENT"));
+            e.setSalary(Double.parseDouble(resultSet.getString("SALARY")));
+            //use ternary operator to handel null
+            e.setDob((resultSet.getString("DOB") != null) ? resultSet.getDate("DOB").toLocalDate() : null);
+            return e;
+        });
     }
 }

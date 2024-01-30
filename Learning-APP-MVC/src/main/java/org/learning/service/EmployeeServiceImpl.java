@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -14,23 +15,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     EmployeeDAO employeeDAO;
+
     @Override
-    public List<Employee> getEmployee() {
-        return employeeDAO.getEmployee().stream().filter(e->e.getEmpId()>1).collect(Collectors.toList());
+    public List<Employee> getEmployees() {
+        return employeeDAO.getEmployees().stream().filter(e -> e.getEmpId() > 1).collect(Collectors.toList());
+    }
+
+    @Override
+    public Employee getEmployee(Long empId) {
+        return employeeDAO.getEmployee(empId);
     }
 
     @Override
     public boolean addEmployee(Employee employee) {
 
-        if(employee.getFirstName()!=null)
-        {
+        if (employee.getFirstName() != null) {
             return employeeDAO.addEmployee(employee);
         }
-        return  false;
+        return false;
     }
 
     @Override
-    public boolean updateEmployeeEmail(String key,String value) {
+    public boolean updateEmployeeEmail(String key, String value) {
 
         return employeeDAO.updateEmployeeEmail(key, value);
 
