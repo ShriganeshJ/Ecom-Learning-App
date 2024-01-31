@@ -21,9 +21,9 @@ public class EmployeeControllerImpl implements EmployeeController {
     }
 
     @GetMapping("/ecom/employees/{empId}")
-    public ResponseEntity<Employee> getEmployee(@PathVariable("empId") long empId)
+    public Employee getEmployee(@PathVariable("empId") long empId)
     {
-        return new ResponseEntity<>(employeeService.getEmployee(empId), HttpStatus.OK);
+        return employeeService.getEmployee(empId);
     }
 
     @PostMapping("/ecom/employees")
